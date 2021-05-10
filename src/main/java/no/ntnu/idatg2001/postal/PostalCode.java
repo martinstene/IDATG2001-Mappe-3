@@ -1,13 +1,13 @@
 package no.ntnu.idatg2001.postal;
 
 public class PostalCode {
-    private int postalNumber;
+    private String postalNumber;
     private String postalLocation;
-    private int municipalityCode;
+    private String municipalityCode;
     private String municipality;
-    private char category;
+    private String category;
 
-    public PostalCode(int postalNumber, String postalLocation, int municipalityCode, String municipality, char category) {
+    public PostalCode(String postalNumber, String postalLocation, String municipalityCode, String municipality, String category) {
         this.postalNumber = postalNumber;
         this.postalLocation = postalLocation;
         this.municipalityCode = municipalityCode;
@@ -15,11 +15,11 @@ public class PostalCode {
         this.category = category;
     }
 
-    public int getPostalNumber() {
+    public String getPostalNumber() {
         return postalNumber;
     }
 
-    public void setPostalNumber(int postalNumber) {
+    public void setPostalNumber(String postalNumber) {
         this.postalNumber = postalNumber;
     }
 
@@ -31,11 +31,11 @@ public class PostalCode {
         this.postalLocation = postalLocation;
     }
 
-    public int getMunicipalityCode() {
+    public String  getMunicipalityCode() {
         return municipalityCode;
     }
 
-    public void setMunicipalityCode(int municipalityCode) {
+    public void setMunicipalityCode(String municipalityCode) {
         this.municipalityCode = municipalityCode;
     }
 
@@ -47,11 +47,11 @@ public class PostalCode {
         this.municipality = municipality;
     }
 
-    public char getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(char category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 }

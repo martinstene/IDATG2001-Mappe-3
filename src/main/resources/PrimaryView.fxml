@@ -15,13 +15,13 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatg2001.run.PrimaryViewController">
    <children>
-      <TableView layoutX="-2.0" layoutY="173.0" prefHeight="426.0" prefWidth="1002.0">
+      <TableView fx:id="tableView" layoutX="-2.0" layoutY="173.0" prefHeight="426.0" prefWidth="1002.0">
         <columns>
-          <TableColumn prefWidth="78.2947633266449" text="Postal code" />
-          <TableColumn minWidth="0.0" prefWidth="122.20523071289062" text="Postal Location" />
-            <TableColumn minWidth="0.0" prefWidth="59.76387023925781" text="Municipality Code" />
-            <TableColumn prefWidth="41.822509765625" text="Municipality" />
-            <TableColumn prefWidth="75.0" text="Category" />
+          <TableColumn fx:id="postalCodeColumn" prefWidth="78.2947633266449" text="Postal code" />
+          <TableColumn fx:id="postalLocationColumn" minWidth="0.0" prefWidth="122.20523071289062" text="Postal Location" />
+            <TableColumn fx:id="municipalityCodeColumn" minWidth="0.0" prefWidth="59.76387023925781" text="Municipality Code" />
+            <TableColumn fx:id="municipalityColumn" prefWidth="41.822509765625" text="Municipality" />
+            <TableColumn fx:id="categoryColumn" prefWidth="75.0" text="Category" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -29,8 +29,8 @@
       </TableView>
       <HBox layoutX="21.0" layoutY="113.0" prefHeight="26.0" prefWidth="968.0" spacing="250.0">
          <children>
-            <TextField promptText="Search by postal code" />
-            <TextField promptText="Search by municipality" />
+            <TextField onAction="#handleSearchByPostalCode" promptText="Search by postal code" />
+            <TextField onAction="#handleSearchByMunicipality" promptText="Search by municipality" />
             <ChoiceBox prefWidth="150.0" />
          </children>
       </HBox>
@@ -39,6 +39,7 @@
           <Menu mnemonicParsing="false" text="File">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#handleExitButton" text="Exit" />
+                  <MenuItem mnemonicParsing="false" onAction="#readFromFile" text="Import" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
