@@ -29,7 +29,7 @@
       </TableView>
       <HBox layoutX="21.0" layoutY="113.0" prefHeight="26.0" prefWidth="968.0" spacing="250.0">
          <children>
-            <TextField onAction="#handleSearchByPostalCode" promptText="Search by postal code" />
+            <TextField fx:id="filterPostalCode" promptText="Search by postal code" />
             <TextField onAction="#handleSearchByMunicipality" promptText="Search by municipality" />
             <ChoiceBox prefWidth="150.0" />
          </children>

@@ -2,12 +2,11 @@ package no.ntnu.idatg2001.run;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -21,8 +20,9 @@ import java.util.ResourceBundle;
 
 public class PrimaryViewController implements Initializable {
 
+    public TextField filterPostalCode;
     @FXML
-    private TableView tableView;
+    private TableView<PostalCode> tableView;
     @FXML
     private TableColumn<Object, Object> postalCodeColumn;
     @FXML
@@ -33,6 +33,8 @@ public class PrimaryViewController implements Initializable {
     private TableColumn<Object, Object> municipalityColumn;
     @FXML
     private TableColumn<Object, Object> categoryColumn;
+
+    private final ObservableList<PostalCode> postalCodeObservableList = FXCollections.observableArrayList();
 
     @FXML
     private void handleExitButton() {
@@ -50,15 +52,13 @@ public class PrimaryViewController implements Initializable {
     }
 
     public void getPostalCodes(){
-        ObservableList<PostalCode> patientsObservableList = FXCollections.observableArrayList();
-        patientsObservableList.addAll(App.postalRegister.getPostalCodeList());
+        postalCodeObservableList.addAll(App.postalRegister.getPostalCodeList());
 
-        tableView.setItems(patientsObservableList);
+        tableView.setItems(postalCodeObservableList);
     }
 
     @FXML
     public void handleSearchByPostalCode() {
-
     }
 
     @FXML
@@ -68,14 +68,50 @@ public class PrimaryViewController implements Initializable {
 
     public void readFromFile() throws IOException {
         try {
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text files", "*.txt"));
-            Stage stage = new Stage();
-            File selectedFile = fileChooser.showOpenDialog(stage);
+            File selectedFile = new File("src/main/resources/Postnummerregister-ansi.txt");
             ReadFromFile.read(selectedFile);
-            getPostalCodes(); // This is for updating the tableview after adding a new Patient
         } catch (NullPointerException ignored){}
     }
+
+    public void search(){
+        // Wrap the ObservableList in a FilteredList (initially display all data).
+        FilteredList<PostalCode> filteredData = new FilteredList<>(postalCodeObservableList, b -> true);
+
+        // 2. Set the filter Predicate whenever the filter changes.
+        filterPostalCode.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(employee -> {
+                // If filter text is empty, display all persons.
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Compare first name and last name of every person with filter text.
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (employee.getPostalNumber().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches first name.
+                } else if (employee.getMunicipalityCode().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches last name.
+                } else if (employee.getMunicipality().toLowerCase().contains(lowerCaseFilter))
+                    return true;
+                else
+                    return false; // Does not match.
+            });
+        });
+
+        // 3. Wrap the FilteredList in a SortedList.
+        SortedList<PostalCode> sortedData = new SortedList<>(filteredData);
+
+        // 4. Bind the SortedList comparator to the TableView comparator.
+        // 	  Otherwise, sorting the TableView would have no effect.
+        sortedData.comparatorProperty().bind(tableView.comparatorProperty());
+
+        // 5. Add sorted (and filtered) data to the table.
+        tableView.setItems(sortedData);
+    }
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -84,6 +120,13 @@ public class PrimaryViewController implements Initializable {
         municipalityCodeColumn.setCellValueFactory(new PropertyValueFactory<>("municipalityCode"));
         municipalityColumn.setCellValueFactory(new PropertyValueFactory<>("municipality"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
+        try {
+            readFromFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         getPostalCodes();
+
+        search();
     }
 }
