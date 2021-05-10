@@ -51,7 +51,7 @@ public class PrimaryViewController implements Initializable, Functions {
     }
 
     @Override
-    public void getPostalCodes(){
+    public void getPostalCodes() {
         postalCodeObservableList.addAll(App.postalRegister.getPostalCodeList());
 
         tableView.setItems(postalCodeObservableList);
@@ -62,11 +62,12 @@ public class PrimaryViewController implements Initializable, Functions {
         try {
             File selectedFile = new File("src/main/resources/Postnummerregister-ansi.txt");
             ReadFromFile.read(selectedFile);
-        } catch (NullPointerException ignored){}
+        } catch (NullPointerException ignored) {
+        }
     }
 
     @Override
-    public void search(){
+    public void search() {
         // Wrap the ObservableList in a FilteredList (initially display all data).
         FilteredList<PostalCode> filteredList = new FilteredList<>(postalCodeObservableList, b -> true);
 
@@ -86,22 +87,13 @@ public class PrimaryViewController implements Initializable, Functions {
                     return true; // Filter matches first name.
                 } else // Does not match.
                     if (postalCode.getMunicipalityCode().toLowerCase().contains(lowerCaseFilter)) {
-                    return true; // Filter matches last name.
-                } else return postalCode.getMunicipality().toLowerCase().contains(lowerCaseFilter);
+                        return true; // Filter matches last name.
+                    } else return postalCode.getMunicipality().toLowerCase().contains(lowerCaseFilter);
             });
         });
 
-        // 3. Wrap the FilteredList in a SortedList.
-        SortedList<PostalCode> sortedData = new SortedList<>(filteredList);
-
-        // 4. Bind the SortedList comparator to the TableView comparator.
-        // 	  Otherwise, sorting the TableView would have no effect.
-        sortedData.comparatorProperty().bind(tableView.comparatorProperty());
-
-        // 5. Add sorted (and filtered) data to the table.
-        tableView.setItems(sortedData);
+        tableView.setItems(filteredList);
     }
-
 
 
     @Override
