@@ -8,6 +8,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 public class ReadFromFile {
 
@@ -23,13 +25,14 @@ public class ReadFromFile {
      */
     public static void read(File file) throws IOException {
         String line;
+        Charset charset = StandardCharsets.ISO_8859_1;
         final String separator = "\t";
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(file,charset))) {
             String[] tempArray;
             while ((line = br.readLine()) != null) {
                 tempArray = line.split(separator);
 
-                PostalCode postalCode = new PostalCode(tempArray[0], tempArray[1], tempArray[2], tempArray[3],tempArray[4]);
+                PostalCode postalCode = new PostalCode(tempArray[0], tempArray[1], tempArray[2], tempArray[3], tempArray[4]);
                 App.postalRegister.getPostalCodeList().add(postalCode);
             }
         } catch (IOException e) {

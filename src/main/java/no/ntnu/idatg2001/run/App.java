@@ -14,7 +14,7 @@ import java.io.IOException;
  */
 public class App extends Application {
 
-    public static PostalRegister postalRegister = new PostalRegister();
+    public static final PostalRegister postalRegister = new PostalRegister();
 
     @Override
     public void start(Stage stage) throws IOException {

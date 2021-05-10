@@ -3,7 +3,6 @@ package no.ntnu.idatg2001.run;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -50,6 +49,14 @@ public class PrimaryViewController implements Initializable, Functions {
         }
     }
 
+    @FXML
+    private void handleAboutButton(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setContentText("This is a brilliant application made by \n C\nMartin Stene");
+        alert.showAndWait();
+    }
+
     @Override
     public void getPostalCodes() {
         postalCodeObservableList.addAll(App.postalRegister.getPostalCodeList());
@@ -69,7 +76,7 @@ public class PrimaryViewController implements Initializable, Functions {
     @Override
     public void search() {
         // Wrap the ObservableList in a FilteredList (initially display all data).
-        FilteredList<PostalCode> filteredList = new FilteredList<>(postalCodeObservableList, b -> true);
+        FilteredList<PostalCode> filteredList = new FilteredList<>(postalCodeObservableList, s -> true);
 
         // 2. Set the filter Predicate whenever the filter changes.
         filterPostalCode.textProperty().addListener((observable, oldValue, newValue) -> {
