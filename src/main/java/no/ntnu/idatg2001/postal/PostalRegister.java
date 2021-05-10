@@ -1,7 +1,5 @@
 package no.ntnu.idatg2001.postal;
 
-import javafx.collections.transformation.FilteredList;
-
 import java.util.ArrayList;
 import java.util.List;
 

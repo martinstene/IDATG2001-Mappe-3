@@ -37,9 +37,9 @@ public class ReadFromFile {
         } catch (ArrayIndexOutOfBoundsException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Incorrect file formatting!");
-            alert.setHeaderText("Incorrect formatting of .csv file");
-            alert.setContentText("To import a .csv file you will need it on the format: " +
-                    "firstname;lastname;generalPractitioner;socialSecurityNumber;diagnosis");
+            alert.setHeaderText("Incorrect formatting of .txt file");
+            alert.setContentText("To import a .txt file you will need it on the format: " +
+                    "PostalCode \t PostalLoction \t MunicipalityCode \t Municipality \t Category");
             alert.showAndWait();
         }
     }

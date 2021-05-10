@@ -8,8 +8,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import no.ntnu.idatg2001.file.ReadFromFile;
 import no.ntnu.idatg2001.postal.PostalCode;
 
@@ -18,9 +16,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PrimaryViewController implements Initializable {
+public class PrimaryViewController implements Initializable, Functions {
 
-    public TextField filterPostalCode;
+    @FXML
+    private TextField filterPostalCode;
     @FXML
     private TableView<PostalCode> tableView;
     @FXML
@@ -51,21 +50,14 @@ public class PrimaryViewController implements Initializable {
         }
     }
 
+    @Override
     public void getPostalCodes(){
         postalCodeObservableList.addAll(App.postalRegister.getPostalCodeList());
 
         tableView.setItems(postalCodeObservableList);
     }
 
-    @FXML
-    public void handleSearchByPostalCode() {
-    }
-
-    @FXML
-    public void handleSearchByMunicipality() {
-
-    }
-
+    @Override
     public void readFromFile() throws IOException {
         try {
             File selectedFile = new File("src/main/resources/Postnummerregister-ansi.txt");
@@ -73,13 +65,14 @@ public class PrimaryViewController implements Initializable {
         } catch (NullPointerException ignored){}
     }
 
+    @Override
     public void search(){
         // Wrap the ObservableList in a FilteredList (initially display all data).
-        FilteredList<PostalCode> filteredData = new FilteredList<>(postalCodeObservableList, b -> true);
+        FilteredList<PostalCode> filteredList = new FilteredList<>(postalCodeObservableList, b -> true);
 
         // 2. Set the filter Predicate whenever the filter changes.
         filterPostalCode.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(employee -> {
+            filteredList.setPredicate(postalCode -> {
                 // If filter text is empty, display all persons.
 
                 if (newValue == null || newValue.isEmpty()) {
@@ -89,19 +82,17 @@ public class PrimaryViewController implements Initializable {
                 // Compare first name and last name of every person with filter text.
                 String lowerCaseFilter = newValue.toLowerCase();
 
-                if (employee.getPostalNumber().toLowerCase().contains(lowerCaseFilter)) {
+                if (postalCode.getPostalNumber().toLowerCase().contains(lowerCaseFilter)) {
                     return true; // Filter matches first name.
-                } else if (employee.getMunicipalityCode().toLowerCase().contains(lowerCaseFilter)) {
+                } else // Does not match.
+                    if (postalCode.getMunicipalityCode().toLowerCase().contains(lowerCaseFilter)) {
                     return true; // Filter matches last name.
-                } else if (employee.getMunicipality().toLowerCase().contains(lowerCaseFilter))
-                    return true;
-                else
-                    return false; // Does not match.
+                } else return postalCode.getMunicipality().toLowerCase().contains(lowerCaseFilter);
             });
         });
 
         // 3. Wrap the FilteredList in a SortedList.
-        SortedList<PostalCode> sortedData = new SortedList<>(filteredData);
+        SortedList<PostalCode> sortedData = new SortedList<>(filteredList);
 
         // 4. Bind the SortedList comparator to the TableView comparator.
         // 	  Otherwise, sorting the TableView would have no effect.
