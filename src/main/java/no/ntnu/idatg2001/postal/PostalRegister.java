@@ -17,4 +17,8 @@ public class PostalRegister {
     public void setPostalCodeList(List<PostalCode> postalCodeList) {
         this.postalCodeList = postalCodeList;
     }
+
+    public void addAllElements(PostalCode postalCode){
+        postalCodeList.add(postalCode);
+    }
 }

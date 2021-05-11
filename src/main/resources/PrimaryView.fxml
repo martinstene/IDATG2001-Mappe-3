@@ -18,7 +18,7 @@
         <columns>
           <TableColumn fx:id="postalCodeColumn" editable="false" prefWidth="78.2947633266449" text="Postal code" />
           <TableColumn fx:id="postalLocationColumn" editable="false" minWidth="0.0" prefWidth="122.20523071289062" text="Postal Location" />
-            <TableColumn fx:id="municipalityCodeColumn" editable="false" minWidth="0.0" prefWidth="59.76387023925781" text="Municipality Code" />
+            <TableColumn fx:id="municipalityCodeColumn" editable="false" minWidth="0.0" prefWidth="59.76387023925781" text="ZIP code" />
             <TableColumn fx:id="municipalityColumn" editable="false" prefWidth="41.822509765625" text="Municipality" />
             <TableColumn fx:id="categoryColumn" editable="false" prefWidth="75.0" text="Category" />
         </columns>
@@ -28,7 +28,7 @@
       </TableView>
       <HBox alignment="CENTER" layoutX="21.0" layoutY="113.0" prefHeight="26.0" prefWidth="968.0" spacing="250.0">
          <children>
-            <TextField fx:id="filterPostalCode" alignment="CENTER" prefHeight="26.0" prefWidth="377.0" promptText="Search by postal code, Municipality Code or the municipality name">
+            <TextField fx:id="filterPostalCodeTextField" alignment="CENTER" prefHeight="26.0" prefWidth="377.0" promptText="Search by postal code, Municipality Code or the municipality name">
                <tooltip>
                   <Tooltip text="This will let you search by alot of factors, just try it!" />
                </tooltip></TextField>

@@ -23,7 +23,7 @@ public class ReadFromFile {
      *
      * @param file the file
      */
-    public static void read(File file) throws IOException {
+    public static void read(File file) {
         String line;
         Charset charset = StandardCharsets.ISO_8859_1;
         final String separator = "\t";
@@ -33,7 +33,7 @@ public class ReadFromFile {
                 tempArray = line.split(separator);
 
                 PostalCode postalCode = new PostalCode(tempArray[0], tempArray[1], tempArray[2], tempArray[3], tempArray[4]);
-                App.postalRegister.getPostalCodeList().add(postalCode);
+                App.postalRegister.addAllElements(postalCode);
             }
         } catch (IOException e) {
             e.getCause();
@@ -42,7 +42,7 @@ public class ReadFromFile {
             alert.setTitle("Incorrect file formatting!");
             alert.setHeaderText("Incorrect formatting of .txt file");
             alert.setContentText("To import a .txt file you will need it on the format: " +
-                    "PostalCode \t PostalLoction \t MunicipalityCode \t Municipality \t Category");
+                    "PostalCode \t PostalLoction \t MunicipalityCode(ZIP) \t Municipality \t Category");
             alert.showAndWait();
         }
     }

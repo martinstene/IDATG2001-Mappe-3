@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 public class PrimaryViewController implements Initializable, Functions {
 
     @FXML
-    private TextField filterPostalCode;
+    private TextField filterPostalCodeTextField;
     @FXML
     private TableView<PostalCode> tableView;
     @FXML
@@ -50,7 +50,7 @@ public class PrimaryViewController implements Initializable, Functions {
     }
 
     @FXML
-    private void handleAboutButton(){
+    private void handleAboutButton() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information");
         alert.setContentText("This is a brilliant application made by \n C\nMartin Stene");
@@ -60,7 +60,6 @@ public class PrimaryViewController implements Initializable, Functions {
     @Override
     public void getPostalCodes() {
         postalCodeObservableList.addAll(App.postalRegister.getPostalCodeList());
-
         tableView.setItems(postalCodeObservableList);
     }
 
@@ -68,38 +67,52 @@ public class PrimaryViewController implements Initializable, Functions {
     public void readFromFile() throws IOException {
         try {
             File selectedFile = new File("src/main/resources/Postnummerregister-ansi.txt");
-            ReadFromFile.read(selectedFile);
-        } catch (NullPointerException ignored) {
-        }
+            if (selectedFile.exists()){
+                ReadFromFile.read(selectedFile);
+            }
+        } catch (NullPointerException ignored) {}
     }
 
+    /**
+     * Source code taken from https://www.youtube.com/watch?v=FeTrcNBVWtg
+     * Reasoning for using this code is because it uses lambda expressions in a good way,
+     * also does what I want it to.
+     *
+     * It does what the assignment says and in a sophisticated manner. It sets the list of initial
+     * elements in a filtered list then uses a listener to always check the value of the text field, this
+     * makes it more user friendly, and when the user starts typing they will immediately see results
+     * gathered from the search, no need to click the enter button which was my original design.
+     *
+     */
     @Override
     public void search() {
-        // Wrap the ObservableList in a FilteredList (initially display all data).
-        FilteredList<PostalCode> filteredList = new FilteredList<>(postalCodeObservableList, s -> true);
+        try {
+            // Wrap the ObservableList in a FilteredList (initially display all data).
+            FilteredList<PostalCode> filteredList = new FilteredList<>(postalCodeObservableList, s -> true);
 
-        // 2. Set the filter Predicate whenever the filter changes.
-        filterPostalCode.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredList.setPredicate(postalCode -> {
-                // If filter text is empty, display all persons.
+            // 2. Set the filter Predicate whenever the filter changes.
+            filterPostalCodeTextField.textProperty().addListener((observable, oldValue, newValue) ->
+                    filteredList.setPredicate(postalCode -> {
+                        // If filter text is empty, display all persons.
 
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
+                        if (newValue == null || newValue.isEmpty()) {
+                            return true;
+                        }
 
-                // Compare first name and last name of every person with filter text.
-                String lowerCaseFilter = newValue.toLowerCase();
+                        // Compare first name and last name of every person with filter text.
+                        String lowerCaseFilter = newValue.toLowerCase();
 
-                if (postalCode.getPostalNumber().toLowerCase().contains(lowerCaseFilter)) {
-                    return true; // Filter matches first name.
-                } else // Does not match.
-                    if (postalCode.getMunicipalityCode().toLowerCase().contains(lowerCaseFilter)) {
-                        return true; // Filter matches last name.
-                    } else return postalCode.getMunicipality().toLowerCase().contains(lowerCaseFilter);
-            });
-        });
+                        if (postalCode.getPostalNumber().toLowerCase().contains(lowerCaseFilter)) {
+                            return true; // Filter matches first name.
+                        } else // Does not match.
+                            if (postalCode.getMunicipalityCode().toLowerCase().contains(lowerCaseFilter)) {
+                                return true; // Filter matches last name.
+                            } else return postalCode.getMunicipality().toLowerCase().contains(lowerCaseFilter);
+                    }));
+            tableView.setItems(filteredList);
 
-        tableView.setItems(filteredList);
+        } catch (NullPointerException ignored) {
+        }
     }
 
 
