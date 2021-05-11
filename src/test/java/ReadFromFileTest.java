@@ -8,10 +8,19 @@ import java.io.File;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type Read from file test.
+ */
 class ReadFromFileTest {
 
+    /**
+     * The Selected file.
+     */
     File selectedFile;
 
+    /**
+     * Read method chekcing if the file was found and exists after reading it.
+     */
     @Test
     @DisplayName("Checks if the file is eligable to be read, if it is read the file will exist and return true")
     void read() {
@@ -23,6 +32,10 @@ class ReadFromFileTest {
         assertNotEquals(beforeAdd,afterAdd);
     }
 
+    /**
+     * Read negative method. Checking that if the file is not found it is not read because no file
+     * is there. Fails.
+     */
     @Test
     @DisplayName("Checks if the file is not available by giving the file a wrong path, negative test")
     void readNegative() {
