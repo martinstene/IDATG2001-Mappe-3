@@ -7,12 +7,14 @@ import java.io.IOException;
  */
 public interface Functions {
     /**
-     * Gets postal codes.
+     * Gets postal codes to the observable list from the normal list.
+     * It then sets these elements to the tableview so that the user can see.
      */
     void getPostalCodes();
 
     /**
-     * Read from file.
+     * Read from file and sets the content of the file to the tableview.
+     * Checks if the file inserted exists and then uses the read() method from ReadFromFile.
      *
      * @throws IOException the io exception
      */

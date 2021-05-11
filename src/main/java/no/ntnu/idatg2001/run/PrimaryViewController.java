@@ -35,8 +35,16 @@ public class PrimaryViewController implements Initializable, Functions {
     @FXML
     private TableColumn<Object, Object> categoryColumn;
 
+    /**
+     * Creating an observable list which will in the getPostalCodes() method be filled
+     * with the elements from the List from PostalRegister.
+     */
     private final ObservableList<PostalCode> postalCodeObservableList = FXCollections.observableArrayList();
 
+    /**
+     * Clicking the exit button or the (Esc key) gets the user this alert.
+     * It will prompt him/her to say OK if they really want to exit the program.
+     */
     @FXML
     private void handleExitButton() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -52,6 +60,9 @@ public class PrimaryViewController implements Initializable, Functions {
         }
     }
 
+    /**
+     * Clicking the about button gives the user an alert with information about the program.
+     */
     @FXML
     private void handleAboutButton() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -79,6 +90,7 @@ public class PrimaryViewController implements Initializable, Functions {
 
     /**
      * Source code taken from https://www.youtube.com/watch?v=FeTrcNBVWtg
+     * <p>
      * Reasoning for using this code is because it uses lambda expressions in a good way,
      * also does what I want it to.
      * <p>
@@ -134,7 +146,6 @@ public class PrimaryViewController implements Initializable, Functions {
 
         } catch (IOException e) {
             e.printStackTrace();
-
         }
     }
 }

@@ -14,6 +14,9 @@ import java.io.IOException;
  */
 public class App extends Application {
 
+    /**
+     * The constant postalRegister. This will be used to access business method in the GUI.
+     */
     public static final PostalRegister postalRegister = new PostalRegister();
 
     @Override
@@ -23,11 +26,23 @@ public class App extends Application {
         stage.show();
     }
 
+    /**
+     * This is a simple method from the maven archetype which creates a bit more cohesion.
+     *
+     * @param fxml is the fxml file you want to show
+     * @return the fxml loaded
+     * @throws IOException ioexception
+     */
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getClassLoader().getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         launch();
     }
