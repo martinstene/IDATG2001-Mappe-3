@@ -12,15 +12,6 @@ class ReadFromFileTest {
 
     File selectedFile;
 
-    @BeforeEach
-    void setUp() {
-
-    }
-
-    @AfterEach
-    void tearDown() {
-    }
-
     @Test
     @DisplayName("Checks if the file is eligable to be read, if it is read the file will exist and return true")
     void read() {

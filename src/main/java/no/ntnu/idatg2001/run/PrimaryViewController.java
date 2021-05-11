@@ -15,6 +15,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * The type Primary view controller.
+ */
 public class PrimaryViewController implements Initializable, Functions {
 
     @FXML
@@ -67,22 +70,22 @@ public class PrimaryViewController implements Initializable, Functions {
     public void readFromFile() throws IOException {
         try {
             File selectedFile = new File("src/main/resources/Postnummerregister-ansi.txt");
-            if (selectedFile.exists()){
+            if (selectedFile.exists()) {
                 ReadFromFile.read(selectedFile);
             }
-        } catch (NullPointerException ignored) {}
+        } catch (NullPointerException ignored) {
+        }
     }
 
     /**
      * Source code taken from https://www.youtube.com/watch?v=FeTrcNBVWtg
      * Reasoning for using this code is because it uses lambda expressions in a good way,
      * also does what I want it to.
-     *
+     * <p>
      * It does what the assignment says and in a sophisticated manner. It sets the list of initial
      * elements in a filtered list then uses a listener to always check the value of the text field, this
      * makes it more user friendly, and when the user starts typing they will immediately see results
      * gathered from the search, no need to click the enter button which was my original design.
-     *
      */
     @Override
     public void search() {
@@ -118,18 +121,20 @@ public class PrimaryViewController implements Initializable, Functions {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        postalCodeColumn.setCellValueFactory(new PropertyValueFactory<>("postalNumber"));
-        postalLocationColumn.setCellValueFactory(new PropertyValueFactory<>("postalLocation"));
-        municipalityCodeColumn.setCellValueFactory(new PropertyValueFactory<>("municipalityCode"));
-        municipalityColumn.setCellValueFactory(new PropertyValueFactory<>("municipality"));
-        categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
         try {
+            postalCodeColumn.setCellValueFactory(new PropertyValueFactory<>("postalNumber"));
+            postalLocationColumn.setCellValueFactory(new PropertyValueFactory<>("postalLocation"));
+            municipalityCodeColumn.setCellValueFactory(new PropertyValueFactory<>("municipalityCode"));
+            municipalityColumn.setCellValueFactory(new PropertyValueFactory<>("municipality"));
+            categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
+
             readFromFile();
+            getPostalCodes();
+            search();
+
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        getPostalCodes();
 
-        search();
+        }
     }
 }

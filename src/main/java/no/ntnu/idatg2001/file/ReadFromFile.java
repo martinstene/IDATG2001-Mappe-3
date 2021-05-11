@@ -33,7 +33,7 @@ public class ReadFromFile {
                 tempArray = line.split(separator);
 
                 PostalCode postalCode = new PostalCode(tempArray[0], tempArray[1], tempArray[2], tempArray[3], tempArray[4]);
-                App.postalRegister.addAllElements(postalCode);
+                App.postalRegister.addElements(postalCode);
             }
         } catch (IOException e) {
             e.getCause();

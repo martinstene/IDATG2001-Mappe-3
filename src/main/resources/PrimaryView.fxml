@@ -26,12 +26,15 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <HBox alignment="CENTER" layoutX="21.0" layoutY="113.0" prefHeight="26.0" prefWidth="968.0" spacing="250.0">
+      <HBox alignment="CENTER" layoutX="1.0" layoutY="113.0" prefHeight="26.0" prefWidth="999.0" spacing="250.0">
          <children>
-            <TextField fx:id="filterPostalCodeTextField" alignment="CENTER" prefHeight="26.0" prefWidth="377.0" promptText="Search by postal code, Municipality Code or the municipality name">
+            <TextField fx:id="filterPostalCodeTextField" alignment="CENTER" prefHeight="26.0" prefWidth="377.0" promptText="Search by postal code, ZIP code or the municipality name">
                <tooltip>
                   <Tooltip text="This will let you search by alot of factors, just try it!" />
-               </tooltip></TextField>
+               </tooltip>
+               <font>
+                  <Font name="Helvetica" size="14.0" />
+               </font></TextField>
          </children>
       </HBox>
       <MenuBar layoutX="-6.0" layoutY="-2.0" prefHeight="28.0" prefWidth="1005.0" style="-fx-cursor: hand;">
@@ -48,7 +51,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="350.0" layoutY="43.0" text="Postal  registry 1.0">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="43.0" prefHeight="44.0" prefWidth="1002.0" text="Postal  registry v1.0">
          <font>
             <Font name="Helvetica" size="36.0" />
          </font>

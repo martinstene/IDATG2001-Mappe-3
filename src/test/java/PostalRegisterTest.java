@@ -27,9 +27,9 @@ class PostalRegisterTest {
     @Test
     @DisplayName("Testing to see if the method returns a different result after adding using the method created." +
             " This is a positive test which should not result in a fail.")
-    void addAllElements() {
+    void addElements() {
         int before = postalRegister.getPostalCodeList().size();
-        postalRegister.addAllElements(new PostalCode("0010", "Oslo",
+        postalRegister.addElements(new PostalCode("0010", "Oslo",
                 "0301", "Oslo", "P"));
         int after = postalRegister.getPostalCodeList().size();
 
@@ -38,9 +38,9 @@ class PostalRegisterTest {
 
     @Test
     @DisplayName("Testing negatively to see that the method will return false when a wrong action is occuring.")
-    void addAllElementsNegative(){
+    void addElementsNegative(){
         try {
-            postalRegister.addAllElements(new PostalCode("", "",
+            postalRegister.addElements(new PostalCode("", "",
                     "", "", ""));
             fail("You should not be able to add an element with all empty strings.");
         } catch (Exception e){
