@@ -21,7 +21,9 @@ public class ReadFromFile {
      * This is acquired from folder number 2 written by myself. This is because it
      * serves the same purpose as this program wanted to.
      *
-     * @param file the file
+     * @param file is read. It checks if the formatting on the file is valid, if not it will throw
+     *             an exception which will prompt the user with an alert. This is for the software if
+     *             it's developed further where users can add their own files.
      */
     public static void read(File file) {
         String line;
@@ -42,7 +44,7 @@ public class ReadFromFile {
             alert.setTitle("Incorrect file formatting!");
             alert.setHeaderText("Incorrect formatting of .txt file");
             alert.setContentText("To import a .txt file you will need it on the format: " +
-                    "PostalCode \t PostalLoction \t MunicipalityCode(ZIP) \t Municipality \t Category");
+                    "PostalCode\tPostalLoction\tMunicipalityCode(ZIP)\tMunicipality\tCategory");
             alert.showAndWait();
         }
     }
