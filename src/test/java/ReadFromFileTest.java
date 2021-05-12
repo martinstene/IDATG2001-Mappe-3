@@ -29,7 +29,7 @@ class ReadFromFileTest {
         ReadFromFile.read(selectedFile);
         boolean afterAdd = selectedFile.exists();
 
-        assertNotEquals(beforeAdd,afterAdd);
+        assertNotEquals(beforeAdd, afterAdd);
     }
 
     /**
@@ -43,7 +43,7 @@ class ReadFromFileTest {
             selectedFile = new File("src/test/resources/Postnummerregister-ansi.txt");
             ReadFromFile.read(selectedFile);
             fail("This file is not in the correct location");
-        } catch (Exception e){
+        } catch (Exception e) {
             assertTrue(true);
         }
 

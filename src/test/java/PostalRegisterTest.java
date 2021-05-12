@@ -58,12 +58,12 @@ class PostalRegisterTest {
      */
     @Test
     @DisplayName("Testing negatively to see that the method will return false when a wrong action is occuring.")
-    void addElementsNegative(){
+    void addElementsNegative() {
         try {
             postalRegister.addElements(new PostalCode("", "",
                     "", "", ""));
             fail("You should not be able to add an element with all empty strings.");
-        } catch (Exception e){
+        } catch (Exception e) {
             assertTrue(true);
         }
     }
