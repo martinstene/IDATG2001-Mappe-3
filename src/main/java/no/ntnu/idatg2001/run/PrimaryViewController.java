@@ -122,7 +122,9 @@ public class PrimaryViewController implements Initializable, Functions {
                         } else // Does not match.
                             if (postalCode.getMunicipalityCode().toLowerCase().contains(lowerCaseFilter)) {
                                 return true; // Filter matches last name.
-                            } else return postalCode.getMunicipality().toLowerCase().contains(lowerCaseFilter);
+                            } else if (postalCode.getMunicipality().toLowerCase().contains(lowerCaseFilter)) {
+                                return true;
+                            } else return postalCode.getPostalLocation().toLowerCase().contains(lowerCaseFilter);
                     }));
             tableView.setItems(filteredList);
 
