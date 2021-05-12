@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.logging.Logger;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -15,14 +17,16 @@ class PostalRegisterTest {
     /**
      * The Postal register.
      */
-    PostalRegister postalRegister = new PostalRegister();
+    private final PostalRegister postalRegister = new PostalRegister();
+
+    private static final Logger LOGGER = Logger.getLogger(PostalRegisterTest.class.getName());
 
     /**
      * Sets up.
      */
     @BeforeEach
     void setUp() {
-        System.out.println("Set up, adding a PostalCode to the list");
+        LOGGER.info("Setting up by adding a PostalCode to the list");
         postalRegister.getPostalCodeList().add(new PostalCode("0001", "Oslo",
                 "0301", "Oslo", "P"));
     }
@@ -32,7 +36,7 @@ class PostalRegisterTest {
      */
     @AfterEach
     void tearDown() {
-        System.out.println("Tear down, clearing list and ready for the next test");
+        LOGGER.info("Tear down, clearing list and ready for the next test");
         postalRegister.getPostalCodeList().clear();
     }
 
@@ -53,11 +57,11 @@ class PostalRegisterTest {
     }
 
     /**
-     * Add elements negative. Chekcing if you are able to create an empty PostalCode.
+     * Add elements negative. Checking if you are able to create an empty PostalCode.
      * Method fails because this should not work.
      */
     @Test
-    @DisplayName("Testing negatively to see that the method will return false when a wrong action is occuring.")
+    @DisplayName("Testing negatively to see that the method will return false when a wrong action is occurring.")
     void addElementsNegative() {
         try {
             postalRegister.addElements(new PostalCode("", "",

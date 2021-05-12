@@ -1,6 +1,7 @@
 module no.ntnu.idatg {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.logging;
 
 
     opens no.ntnu.idatg2001.file to java.base;
