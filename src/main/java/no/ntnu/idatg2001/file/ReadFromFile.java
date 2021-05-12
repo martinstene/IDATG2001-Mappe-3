@@ -29,7 +29,7 @@ public class ReadFromFile {
         String line;
         Charset charset = StandardCharsets.ISO_8859_1;
         final String separator = "\t";
-        try (BufferedReader br = new BufferedReader(new FileReader(file,charset))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(file, charset))) {
             String[] tempArray;
             while ((line = br.readLine()) != null) {
                 tempArray = line.split(separator);
@@ -44,7 +44,7 @@ public class ReadFromFile {
             alert.setTitle("Incorrect file formatting!");
             alert.setHeaderText("Incorrect formatting of .txt file");
             alert.setContentText("To import a .txt file you will need it on the format: " +
-                    "PostalCode\tPostalLoction\tMunicipalityCode(ZIP)\tMunicipality\tCategory");
+                    "PostalCode\tPostalLocation\tMunicipalityCode(ZIP)\tMunicipality\tCategory");
             alert.showAndWait();
         }
     }

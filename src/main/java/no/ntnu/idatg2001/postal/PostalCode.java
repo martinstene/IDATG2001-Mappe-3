@@ -68,7 +68,7 @@ public class PostalCode {
      *
      * @return the municipality code
      */
-    public String  getMunicipalityCode() {
+    public String getMunicipalityCode() {
         return municipalityCode;
     }
 

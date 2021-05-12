@@ -4,6 +4,7 @@ import java.io.IOException;
 
 /**
  * The interface Functions.
+ * Used for holding the methods that are not fxml but still used in the GUI
  */
 public interface Functions {
     /**

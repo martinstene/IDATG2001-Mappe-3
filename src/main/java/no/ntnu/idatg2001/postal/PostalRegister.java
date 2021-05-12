@@ -7,7 +7,11 @@ import java.util.List;
  * The type Postal register.
  */
 public class PostalRegister {
-    // Creating a list which will be used all throughout the project
+    /*
+     * Creating a list which will be used all throughout the project
+     * I create a List<> here instead of an ObservableList because I want the business
+     * logic to be separated from the GUI elements such as the ObservableList.
+     */
     private List<PostalCode> postalCodeList;
 
     /**
@@ -41,7 +45,7 @@ public class PostalRegister {
      *
      * @param postalCode the postal code
      */
-    public void addElements(PostalCode postalCode){
+    public void addElements(PostalCode postalCode) {
         postalCodeList.add(postalCode);
     }
 }
