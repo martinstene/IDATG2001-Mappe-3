@@ -6,7 +6,7 @@ import java.io.IOException;
  * The interface Functions.
  * Used for holding the methods that are not fxml but still used in the GUI
  */
-public interface Functions {
+public interface IPrimaryViewController {
     /**
      * Gets postal codes to the observable list from the normal list.
      * It then sets these elements to the tableview so that the user can see.

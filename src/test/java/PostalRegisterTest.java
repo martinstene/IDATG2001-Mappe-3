@@ -1,5 +1,6 @@
 import no.ntnu.idatg2001.postal.PostalCode;
 import no.ntnu.idatg2001.postal.PostalRegister;
+import no.ntnu.idatg2001.run.App;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -17,7 +18,7 @@ class PostalRegisterTest {
     /**
      * The Postal register.
      */
-    private final PostalRegister postalRegister = new PostalRegister();
+    private final PostalRegister postalRegister = App.POSTAL_REGISTER;
 
     private static final Logger LOGGER = Logger.getLogger(PostalRegisterTest.class.getName());
 

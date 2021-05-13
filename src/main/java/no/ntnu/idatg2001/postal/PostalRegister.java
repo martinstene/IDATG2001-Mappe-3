@@ -7,7 +7,10 @@ import java.util.List;
  * The type Postal register.
  */
 public class PostalRegister {
-    /*
+
+    private static PostalRegister createdPostalRegisterInstance = new PostalRegister();
+
+    /**
      * Creating a list which will be used all throughout the project
      * I create a List<> here instead of an ObservableList because I want the business
      * logic to be separated from the GUI elements such as the ObservableList.
@@ -17,7 +20,7 @@ public class PostalRegister {
     /**
      * Instantiates a new Postal register.
      */
-    public PostalRegister() {
+    private PostalRegister() {
         postalCodeList = new ArrayList<>();
     }
 
@@ -47,5 +50,35 @@ public class PostalRegister {
      */
     public void addElements(PostalCode postalCode) {
         postalCodeList.add(postalCode);
+    }
+
+
+    /**
+     * Getting the instance of PostalRegister from the Singleton class.
+     *
+     * @return created postal register instance
+     */
+    public static synchronized PostalRegister getCreatedPostalRegisterInstance() {
+        return InitializePostalRegisterSingleton.INSTANCE;
+    }
+
+    /*
+    * Checking to see if the instance has not been initialized yet.
+     */
+    static {
+        try {
+            if (createdPostalRegisterInstance == null) {
+                createdPostalRegisterInstance = new PostalRegister();
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Something went wrong when initializing");
+        }
+    }
+
+    /**
+     * This is a Singleton class using the design pattern.
+     */
+    private static class InitializePostalRegisterSingleton {
+        private static final PostalRegister INSTANCE = new PostalRegister();
     }
 }

@@ -5,7 +5,11 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import no.ntnu.idatg2001.file.ReadFromFile;
 import no.ntnu.idatg2001.postal.PostalCode;
@@ -18,7 +22,7 @@ import java.util.ResourceBundle;
 /**
  * The type Primary view controller.
  */
-public class PrimaryViewController implements Initializable, Functions {
+public class PrimaryViewController implements Initializable, IPrimaryViewController {
 
     @FXML
     private TextField filterPostalCodeTextField;
@@ -73,7 +77,7 @@ public class PrimaryViewController implements Initializable, Functions {
 
     @Override
     public void getPostalCodes() {
-        postalCodeObservableList.addAll(App.postalRegister.getPostalCodeList());
+        postalCodeObservableList.addAll(App.POSTAL_REGISTER.getPostalCodeList());
         tableView.setItems(postalCodeObservableList);
     }
 
@@ -85,6 +89,10 @@ public class PrimaryViewController implements Initializable, Functions {
                 ReadFromFile.read(selectedFile);
             }
         } catch (NullPointerException ignored) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("No file found");
+            alert.setContentText("Please try again.");
+            alert.showAndWait();
         }
     }
 
@@ -114,18 +122,26 @@ public class PrimaryViewController implements Initializable, Functions {
                             return true;
                         }
 
-                        // Compare first name and last name of every person with filter text.
+                        // Compare postal code and every other field with filter text.
                         String lowerCaseFilter = newValue.toLowerCase();
 
                         if (postalCode.getPostalNumber().toLowerCase().contains(lowerCaseFilter)) {
-                            return true; // Filter matches first name.
+                            return true; // Filter matches postal code.
                         } else // Does not match.
                             if (postalCode.getMunicipalityCode().toLowerCase().contains(lowerCaseFilter)) {
-                                return true; // Filter matches last name.
+                                return true; // Filter matches the municipality code.
                             } else if (postalCode.getMunicipality().toLowerCase().contains(lowerCaseFilter)) {
-                                return true;
-                            } else return postalCode.getPostalLocation().toLowerCase().contains(lowerCaseFilter);
+                                return true; // Filter matches the municipality.
+                            } else {
+                                // Filter matches with postal location.
+                                return postalCode.getPostalLocation().toLowerCase().contains(lowerCaseFilter);
+                            }
                     }));
+            /*
+            * Sets the items to the shown tableview. This happens in real time.
+            * This is because of the listener, it checks everytime the textField is updated
+            * and changes thereafter.
+             */
             tableView.setItems(filteredList);
 
         } catch (NullPointerException ignored) {

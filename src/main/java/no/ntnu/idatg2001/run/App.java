@@ -10,14 +10,14 @@ import no.ntnu.idatg2001.postal.PostalRegister;
 import java.io.IOException;
 
 /**
- * JavaFX App
+ * JavaFX App class.
  */
-public class App extends Application {
+public final class App extends Application {
 
     /**
-     * The constant postalRegister. This will be used to access business method in the GUI.
+     * The constant POSTAL_REGISTER. This will be used to access business method in the GUI.
      */
-    public static final PostalRegister postalRegister = new PostalRegister();
+    public static final PostalRegister POSTAL_REGISTER = PostalRegister.getCreatedPostalRegisterInstance();
 
     @Override
     public void start(Stage stage) throws IOException {
