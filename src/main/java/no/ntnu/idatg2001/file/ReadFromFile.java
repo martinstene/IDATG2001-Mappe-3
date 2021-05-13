@@ -24,7 +24,8 @@ public final class ReadFromFile {
      *
      * @param file is read. It checks if the formatting on the file is valid, if not it will throw
      *             an exception which will prompt the user with an alert. This is for the software if
-     *             it's developed further where users can add their own files.
+     *             it's developed further where users can add their own files using a FileChooser,
+     *             this extra exception will come in handy.
      */
     public static void read(final File file) {
         String line;

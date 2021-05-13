@@ -62,23 +62,26 @@ public class PostalRegister {
         return InitializePostalRegisterSingleton.INSTANCE;
     }
 
-    /*
-    * Checking to see if the instance has not been initialized yet.
-     */
-    static {
-        try {
-            if (createdPostalRegisterInstance == null) {
-                createdPostalRegisterInstance = new PostalRegister();
-            }
-        } catch (Exception e) {
-            throw new RuntimeException("Something went wrong when initializing");
-        }
-    }
-
     /**
      * This is a Singleton class using the design pattern.
      */
     private static class InitializePostalRegisterSingleton {
         private static final PostalRegister INSTANCE = new PostalRegister();
+
+        private InitializePostalRegisterSingleton() {
+        }
+
+        /*
+         * Checking to see if the instance has not been initialized yet.
+         */
+        static {
+            try {
+                if (createdPostalRegisterInstance == null) {
+                    createdPostalRegisterInstance = new PostalRegister();
+                }
+            } catch (Exception e) {
+                throw new RuntimeException("Something went wrong when initializing");
+            }
+        }
     }
 }
