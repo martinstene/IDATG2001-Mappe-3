@@ -68,6 +68,7 @@ public class PostalRegister {
     private static class InitializePostalRegisterSingleton {
         private static final PostalRegister INSTANCE = new PostalRegister();
 
+        // Creating a private constructor.
         private InitializePostalRegisterSingleton() {
         }
 

@@ -5,7 +5,6 @@ import javafx.scene.control.Alert;
 import no.ntnu.idatg2001.postal.PostalCode;
 import no.ntnu.idatg2001.run.App;
 
-
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
