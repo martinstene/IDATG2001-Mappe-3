@@ -1,6 +1,7 @@
 package no.ntnu.idatg2001.file;
 
 import java.io.BufferedReader;
+
 import javafx.scene.control.Alert;
 import no.ntnu.idatg2001.postal.PostalCode;
 import no.ntnu.idatg2001.run.App;

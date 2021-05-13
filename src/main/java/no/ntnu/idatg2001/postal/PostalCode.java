@@ -3,7 +3,7 @@ package no.ntnu.idatg2001.postal;
 /**
  * The type Postal code.
  */
-public class PostalCode {
+public final class PostalCode {
     private String postalNumber;
     private String postalLocation;
     private String municipalityCode;

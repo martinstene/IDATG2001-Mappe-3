@@ -138,9 +138,9 @@ public class PrimaryViewController implements Initializable, IPrimaryViewControl
                             }
                     }));
             /*
-            * Sets the items to the shown tableview. This happens in real time.
-            * This is because of the listener, it checks everytime the textField is updated
-            * and changes thereafter.
+             * Sets the items to the shown tableview. This happens in real time.
+             * This is because of the listener, it checks everytime the textField is updated
+             * and changes thereafter.
              */
             tableView.setItems(filteredList);
 
