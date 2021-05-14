@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * The type Read from file test.
+ * @author Martin Stene
  */
 class ReadFromFileTest {
 

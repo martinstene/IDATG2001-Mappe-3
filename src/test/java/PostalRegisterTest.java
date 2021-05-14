@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * The type Postal register test.
+ * @author Martin Stene
  */
 class PostalRegisterTest {
     /**
