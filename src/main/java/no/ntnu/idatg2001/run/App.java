@@ -11,6 +11,7 @@ import java.io.IOException;
 
 /**
  * JavaFX App class.
+ * @author Martin Stene
  */
 public final class App extends Application {
 

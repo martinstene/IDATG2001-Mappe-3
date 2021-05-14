@@ -21,6 +21,7 @@ import java.util.ResourceBundle;
 
 /**
  * The type Primary view controller.
+ * @author Martin Stene
  */
 public class PrimaryViewController implements Initializable, IPrimaryViewController {
 
