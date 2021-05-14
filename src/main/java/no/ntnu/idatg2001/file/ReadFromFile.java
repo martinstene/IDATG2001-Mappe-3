@@ -12,6 +12,10 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * The type ReadFromFile.
+ * @author Martin Stene
+ */
 public final class ReadFromFile {
 
     private ReadFromFile() {
