@@ -2,6 +2,7 @@ package no.ntnu.idatg2001.postal;
 
 /**
  * The type Postal code.
+ * @author Martin Stene
  */
 public final class PostalCode {
     private String postalNumber;

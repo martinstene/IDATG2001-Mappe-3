@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * The type Postal register.
+ * @author Martin Stene
  */
 public class PostalRegister {
 
